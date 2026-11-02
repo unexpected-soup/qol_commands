@@ -1,0 +1,19 @@
+mod.qol_commands.name = QoL Commands
+mod.qol_commands.description = Adds QoL commands (homes, /back, /clear, /speed, /reach)
+
+command.qol_commands.sethome.done = Home "{0}" set.
+command.qol_commands.sethome.full = You can't have more than {0} homes. Delete one with /delhome first.
+command.qol_commands.home.done = Teleported to home "{0}".
+command.qol_commands.home.unset = You have no home named "{0}".
+command.qol_commands.home.missing_dimension = The dimension of home "{0}" no longer exists.
+command.qol_commands.delhome.done = Home "{0}" deleted.
+command.qol_commands.homes.none = You have no homes. Use /sethome to create one.
+command.qol_commands.homes.list = Your homes: {0}
+
+command.qol_commands.back.done = Teleported to your last death location.
+command.qol_commands.back.unset = You have no death location to return to.
+command.qol_commands.back.missing_dimension = The dimension of your last death no longer exists.
+
+command.qol_commands.clear.done = Cleared {0} items from {1} target(s).
+command.qol_commands.speed.done = Speed set to level {0} for {1} target(s).
+command.qol_commands.reach.done = Reach set to level {0} for {1} target(s).

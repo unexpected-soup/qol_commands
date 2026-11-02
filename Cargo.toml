@@ -1,0 +1,16 @@
+[package]
+name = "qol_commands"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+weft_sdk = { path = "../../crates/sdk" }
+
+[profile.release]
+debug = "line-tables-only"
+
+# [workspace]
+

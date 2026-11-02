@@ -1,0 +1,19 @@
+mod.qol_commands.name = More Commands
+mod.qol_commands.description = Commandes pratiques (maisons, /back, /clear, /speed, /reach)
+
+command.qol_commands.sethome.done = Maison « {0} » définie.
+command.qol_commands.sethome.full = Vous ne pouvez pas avoir plus de {0} maisons. Supprimez-en une avec /delhome d'abord.
+command.qol_commands.home.done = Téléporté à la maison « {0} ».
+command.qol_commands.home.unset = Vous n'avez aucune maison nommée « {0} ».
+command.qol_commands.home.missing_dimension = La dimension de la maison « {0} » n'existe plus.
+command.qol_commands.delhome.done = Maison « {0} » supprimée.
+command.qol_commands.homes.none = Vous n'avez aucune maison. Utilisez /sethome pour en créer une.
+command.qol_commands.homes.list = Vos maisons : {0}
+
+command.qol_commands.back.done = Téléporté à votre dernier lieu de mort.
+command.qol_commands.back.unset = Vous n'avez aucun lieu de mort où retourner.
+command.qol_commands.back.missing_dimension = La dimension de votre dernière mort n'existe plus.
+
+command.qol_commands.clear.done = {0} objet(s) retiré(s) de {1} cible(s).
+command.qol_commands.speed.done = Vitesse réglée au niveau {0} pour {1} cible(s).
+command.qol_commands.reach.done = Portée réglée au niveau {0} pour {1} cible(s).

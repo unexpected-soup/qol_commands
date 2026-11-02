@@ -1,0 +1,19 @@
+mod.qol_commands.name = QoL Commands
+mod.qol_commands.description = Добавляет дома, /back, /clear, /speed и /reach.
+
+command.qol_commands.sethome.done = Дом «{0}» установлен.
+command.qol_commands.sethome.full = Нельзя иметь больше {0} домов. Сначала удалите один командой /delhome.
+command.qol_commands.home.done = Вы телепортированы в дом «{0}».
+command.qol_commands.home.unset = У вас нет дома с названием «{0}».
+command.qol_commands.home.missing_dimension = Измерения дома «{0}» больше не существует.
+command.qol_commands.delhome.done = Дом «{0}» удалён.
+command.qol_commands.homes.none = У вас нет еще ни одного дома, но это можно исправить с помощью /sethome.
+command.qol_commands.homes.list = Список домов: {0}
+
+command.qol_commands.back.done = Вы телепортированы к месту последней смерти.
+command.qol_commands.back.unset = У вас нет места смерти, куда можно вернуться.
+command.qol_commands.back.missing_dimension = Измерения вашей последней смерти больше не существует.
+
+command.qol_commands.clear.done = Удалено предметов: {0} (целей: {1}).
+command.qol_commands.speed.done = Скорость установлена на уровень {0} (целей: {1}).
+command.qol_commands.reach.done = Дальность установлена на уровень {0} (целей: {1}).
