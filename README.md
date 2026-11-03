@@ -9,7 +9,7 @@ This mod adds a bunch of handy commands for [Weft](https://github.com/Weft-Rust/
 
 ## How to install
 
-**Stable Weft** - download the matching release in [releases](https://github.com/unexpected-soup/weft-qol-commands/releases), put the zip file in `run/mods/`
+**Stable Weft** - will be available when Weft 26.11.2 gets released
 
 **Nightly Weft** - clone the repo in `mods/`, run `cargo run --release` to compile both Weft and the mod at once
 
