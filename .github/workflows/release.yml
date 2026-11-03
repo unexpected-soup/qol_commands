@@ -1,18 +1,14 @@
 # Builds your mod for Windows, Linux and macOS and publishes one zip that works on all three.
-# You don't need any of those systems yourself: push a tag like v1.0.0 and download the result
+# Push a tag like 0.1.0+26.11.1 (<mod version>+<Weft version>) and download the result
 # from your repository's Releases page.
 #
-# It works once this folder is the root of a repository of its own (GitHub only reads
-# `.github/workflows` there), and `weft_sdk` in Cargo.toml points at the game's git repository
-# instead of a path, with the tag of the game version your players run:
-#   weft_sdk = { git = "https://github.com/VortexSo4/Weft", tag = "v26.10.2" }
-# When the game updates, change that tag and push a new one of your own: a mod built for another
-# game version refuses to load.
+# CI checks out Weft at the tag v<Weft version>, puts this repo in its mods/ folder and builds
+# from there, so Cargo.toml keeps `weft_sdk = { path = "../../crates/sdk" }` and nothing else.
 name: Release
 
 on:
   push:
-    tags: ["v*"]
+    tags: ["*+*"]
 
 permissions:
   contents: write
@@ -26,14 +22,37 @@ jobs:
         os: [windows-latest, ubuntu-22.04, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v7
-      - uses: dtolnay/rust-toolchain@stable
-      - uses: Swatinem/rust-cache@v2
-      - run: cargo build --release
-
-      - name: Mod name
+      - name: Parse tag
         shell: bash
-        run: echo "MOD=$(grep -m1 '^name' Cargo.toml | cut -d'"' -f2)" >> "$GITHUB_ENV"
+        run: |
+          echo "MOD_VERSION=${GITHUB_REF_NAME%%+*}" >> "$GITHUB_ENV"
+          echo "WEFT_TAG=v${GITHUB_REF_NAME#*+}" >> "$GITHUB_ENV"
+
+      # Weft at the version the tag names. A typo'd or missing tag fails here.
+      - uses: actions/checkout@v7
+        with:
+          repository: Weft-Rust/Weft
+          ref: ${{ env.WEFT_TAG }}
+
+      # This repo, as a member of Weft's workspace.
+      - uses: actions/checkout@v7
+        with:
+          path: mods/mod
+
+      - uses: dtolnay/rust-toolchain@stable   # a rust-toolchain.toml in Weft overrides this
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Mod name, and check the version matches the tag
+        shell: bash
+        run: |
+          name=$(grep -m1 '^name' mods/mod/Cargo.toml | cut -d'"' -f2)
+          version=$(grep -m1 '^version' mods/mod/Cargo.toml | cut -d'"' -f2)
+          if [ "$version" != "$MOD_VERSION" ]; then
+            echo "Cargo.toml version $version does not match tag version $MOD_VERSION"; exit 1
+          fi
+          echo "MOD=$name" >> "$GITHUB_ENV"
+
+      - run: cargo build --release -p ${{ env.MOD }}
 
       # Only the one this system built exists.
       - uses: actions/upload-artifact@v7
