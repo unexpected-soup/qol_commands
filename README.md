@@ -15,4 +15,4 @@ This mod adds a bunch of handy commands for [Weft](https://github.com/Weft-Rust/
 
 ## Contribution
 
-You are welcome to report bugs or provide suggestions in [issues](https://github.com/unexpected-soup/weft-qol-commands/issues)
+You are welcome to report bugs or provide suggestions in [issues](https://github.com/unexpected-soup/weft-qol-commands/issues). PRs are also welcome
